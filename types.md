@@ -1,7 +1,7 @@
 # Types
 
 This document does not describe how to define your own types.
-Rather, it describes what can a type of variable be or what a function my return.
+Rather, it describes what can a type of variable be or what a function may return.
 
 ## Nothing type
 
