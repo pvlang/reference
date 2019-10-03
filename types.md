@@ -5,13 +5,13 @@ Rather, it describes what can a type of variable be or what a function may retur
 
 ## Nothing type
 
-This type is like `void` in C. It has the size of 0 and used as marker.
+This type is like `void` in C. It has the size of 0 and used as a marker.
 
 - nothing
 
 ## Boolean type
 
-Can be either `true` or `false`.
+It can be either `true` or `false`.
 Internal representation is not required to be `true == 1`, `false == 0`.
 
 - bool
@@ -37,7 +37,7 @@ They start with **u** and end with the bit width of type (eg. `u32` is 32-bit wi
 - u64
 - usize
 
-## Floating point types
+## Floating-point types
 
 Represented in IEEE 754 standard in memory.
 
@@ -68,13 +68,13 @@ No guarantees about the validity.
 
 ## Range type
 
-Can be bounded or unbounded with inclusive and exclusive bounds.
+It can be bounded or unbounded with inclusive and exclusive bounds.
 
 - ..T..
 
 ## Array type
 
-A stack allocated array of **T** with _constant-expression_ elements inside.
+A stack-allocated array of **T** with _constant-expression_ elements inside.
 
 - [T <| _constant-expression_]
 
@@ -94,7 +94,7 @@ If two struct has the same field names and same types corresponding to field nam
 
 ## Variant type
 
-Basically an enumeration type consisting of types rather than enumeration constants.
+Basically, an enumeration type consisting of types rather than enumeration constants.
 Mapped to a struct containing a variant and a union for possible data.
 
 - (T1 | T2 | ... | TN)
@@ -102,13 +102,13 @@ Mapped to a struct containing a variant and a union for possible data.
 ## Function type
 
 It has two components: inputs and output.
-Inputs is basically a tuple containing the expected arguments.
-Output is the type of the return value of the function.
+Inputs are a tuple containing the expected arguments.
+The output is the type of the return value of the function.
 
 - (T1, T2, ..., TN) -> TO
 - (T <| _constant-expression_) -> TO
 
-## User defined types
+## User-defined types
 
 Types defined with `type Name = ...` statements.
 Can have a path before the name (eg. std::foo::Bar).
