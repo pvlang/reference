@@ -74,9 +74,9 @@ Can be bounded or unbounded with inclusive and exclusive bounds.
 
 ## Array type
 
-A stack allocated array of **T** with **constant-expression** elements inside.
+A stack allocated array of **T** with _constant-expression_ elements inside.
 
-- [T <| constant-expression]
+- [T <| _constant-expression_]
 
 ## Tuple type
 
@@ -84,7 +84,7 @@ Act like anonymous structs with the fields `0, 1, ..., n`.
 `()` a.k.a. empty tuple is also a valid type, and it has a size of 0.
 
 - (T1, T2, ..., TN)
-- (T <| constant-expression)
+- (T <| _constant-expression_)
 
 ## Struct type
 
@@ -106,7 +106,7 @@ Inputs is basically a tuple containing the expected arguments.
 Output is the type of the return value of the function.
 
 - (T1, T2, ..., TN) -> TO
-- (T <| constant-expression) -> TO
+- (T <| _constant-expression_) -> TO
 
 ## User defined types
 
