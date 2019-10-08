@@ -249,6 +249,10 @@ Paths are identifiers separated by `::`
 
 - if E _block_expression_ (else if E _block_expression_)* (else _block_expression_)?
 
+## When expression
+
+TODO
+
 ## Loop expression
 
 - loop _block_expression_
