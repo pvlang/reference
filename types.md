@@ -25,6 +25,7 @@ They start with **i** and end with the bit width of type (eg. `i32` is 32-bit wi
 - i16
 - i32
 - i64
+- i128
 - isize
 
 ## Unsigned integer types
@@ -35,6 +36,7 @@ They start with **u** and end with the bit width of type (eg. `u32` is 32-bit wi
 - u16
 - u32
 - u64
+- u128
 - usize
 
 ## Floating-point types
@@ -43,6 +45,7 @@ Represented in IEEE 754 standard in memory.
 
 - f32
 - f64
+- f128
 
 ## Char type
 
