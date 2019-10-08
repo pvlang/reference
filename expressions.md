@@ -257,10 +257,6 @@ Paths are identifiers separated by `::`
 
 - while E _block_expression_
 
-## In expression
-
-- E is in E
-
 ## Is expression
 
 - E is (# | #PATTERN | (not)? in INABLE_EXPRESSION | EXPRESSION)
