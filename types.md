@@ -63,8 +63,16 @@ Basically `{ ptr: &u8, length: usize }`
 
 ## Pointer types
 
-They are like pointers in C.
 No guarantees about the validity.
+
+- *T
+- *mut T
+
+## Non-NULL Pointer types
+
+Should not be null.
+Will be optimized accordingly.
+Should be used as default.
 
 - &T
 - &mut T
