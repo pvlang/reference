@@ -257,13 +257,17 @@ Paths are identifiers separated by `::`
 
 - while E _block_expression_
 
+## In expression
+
+- E is in E
+
 ## Is expression
 
-- E is (# | #PATTERN | (not)? in IN_EXPRESSION_LHS | EXPRESSION)
+- E is (# | #PATTERN | (not)? in INABLE_EXPRESSION | EXPRESSION)
 
 ## Casting expression
 
-- E as T
+- (#T)E
 
 ## Parenthesized expression
 
