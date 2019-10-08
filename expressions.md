@@ -136,7 +136,7 @@ Paths are identifiers separated by `::`
 
 ### For tuple types
 
-- Name(E1, E2, ..., EN)
+- Name (E1, E2, ..., EN)
 
 ### For struct types
 
@@ -144,14 +144,14 @@ Paths are identifiers separated by `::`
 
 Or with the shorthand init syntax:
 
-- Name { field1: E1, field2: E2, ..., fieldN: EN, ..ERest }
+- Name { field1: E1, field2: E2, ..., fieldN: EN, ...ERest }
 
 ## Spread expression
 
 Used to expand the tuple.
 Basically it converts `(E1, E2, ..., EN)` into `E1, E2, ..., EN`.
 
-- .._tuple-expression_
+- ..._tuple-expression_
 
 ## Binary expression
 
@@ -259,7 +259,7 @@ Paths are identifiers separated by `::`
 
 ## Is expression
 
-- E is T
+- E is (# | #PATTERN | (not)? in IN_EXPRESSION_LHS | EXPRESSION)
 
 ## Casting expression
 
