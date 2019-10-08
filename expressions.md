@@ -259,7 +259,7 @@ Paths are identifiers separated by `::`
 
 ## Is expression
 
-- E is (# | #PATTERN | (not)? in INABLE_EXPRESSION | EXPRESSION)
+- E (as IDENTIFIER)? is (# | #PATTERN | (not)? in INABLE_EXPRESSION | EXPRESSION)
 
 ## Casting expression
 
