@@ -118,12 +118,12 @@ Used to define anonymous functions that capture their environment.
 - \\id1: T1, id2: T2, ..., idN: TN = E
 - \\id1: T1, id2: T2, ..., idN: TN { ... }
 
-- \\-> T = E
-- \\-> T { ... }
-- \\id1, id2, ..., idN -> T = E
-- \\id1, id2, ..., idN -> T { ... }
-- \\id1: T1, id2: T2, ..., idN: TN -> T = E
-- \\id1: T1, id2: T2, ..., idN: TN -> T { ... }
+- \\=> T = E
+- \\=> T { ... }
+- \\id1, id2, ..., idN => T = E
+- \\id1, id2, ..., idN => T { ... }
+- \\id1: T1, id2: T2, ..., idN: TN => T = E
+- \\id1: T1, id2: T2, ..., idN: TN => T { ... }
 
 ## Named type expression
 
@@ -172,6 +172,9 @@ Basically it converts `(E1, E2, ..., EN)` into `E1, E2, ..., EN`.
 - E1 % E2
 - E1 %= E2
 
+- E1 ** E2
+- E1 **= E2
+
 - E1 & E2
 - E1 &= E2
 
@@ -216,6 +219,10 @@ Basically it converts `(E1, E2, ..., EN)` into `E1, E2, ..., EN`.
 
 - E.field
 
+## Field access expression using a pointer type
+
+- E->field
+
 ## Tuple field access expression
 
 - E.0
@@ -234,6 +241,10 @@ Paths are identifiers separated by `::`
 
 - E.name(E1, E2, ..., EN)
 
+## Method call expression using a pointer type
+
+- E->name(E1, E2, ..., EN)
+
 ## Try expression
 
 - try E
@@ -251,7 +262,21 @@ Paths are identifiers separated by `::`
 
 ## When expression
 
-TODO
+- when EXPRESSION (as IDENTIFIER)? is {
+    (IS_ARM_ATOM ( or IS_ARM_ATOM )* ((provided EXPRESSION))? |> EXPRESSION ,)*
+  }
+  
+where IS_ARM_ATOM is 
+
+- \# | #PATTERN | (not)? in EXPRESSION | EXPRESSION | some IDENTIFIER
+
+where PATTERN can be
+
+- { ... } {  }
+- (...) {  }
+- [...] {  }
+- TYPE_NAME {  }
+- TYPE_NAME ... {  }
 
 ## Loop expression
 
@@ -261,9 +286,13 @@ TODO
 
 - while E _block_expression_
 
+## For expression
+
+- for IDENTIFIER in EXPRESSION
+
 ## Is expression
 
-- E (as IDENTIFIER)? is (# | #PATTERN | (not)? in INABLE_EXPRESSION | EXPRESSION)
+- E (as IDENTIFIER)? is (# | #PATTERN | (not)? in EXPRESSION | EXPRESSION)
 
 ## Casting expression
 

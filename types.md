@@ -18,8 +18,8 @@ Internal representation is not required to be `true == 1`, `false == 0`.
 
 ## Signed integer types
 
-Represented in _Two's complement_ form in memory.
-They start with **i** and end with the bit width of type (eg. `i32` is 32-bit wide integer in _Two's complement_ form).
+Represented with _Two's complement_ in the memory.
+They start with **i** and end with the bit width of type (eg. `i32` is 32-bit wide integer with _Two's complement_ representation).
 
 - i8
 - i16
@@ -106,18 +106,9 @@ If two struct has the same field names and same types corresponding to field nam
 ## Variant type
 
 Basically, an enumeration type consisting of types rather than enumeration constants.
-Mapped to a struct containing a variant and a union for possible data.
+Mapped to a struct containing an enum for the tag and a union for possible data.
 
 - (T1 | T2 | ... | TN)
-
-## Function type
-
-It has two components: inputs and output.
-Inputs are a tuple containing the expected arguments.
-The output is the type of the return value of the function.
-
-- (T1, T2, ..., TN) -> TO
-- (T <| _constant-expression_) -> TO
 
 ## User-defined types
 
@@ -129,7 +120,7 @@ Can have a path before the name (eg. std::foo::Bar).
 ## Generic types
 
 Types defined with `@generic(...)` and then `type Name[...] = ...` statements.
-Generic parameters can be types or expressions.
+Generic parameters can be types or constant expressions.
 Can have a path before the name (eg. std::foo::Bar).
 
-- Name[T1, E1, T2, E2, ..., TN, EN]
+- Name[#T1, E1, #T2, E2, ..., #TN, EN]
