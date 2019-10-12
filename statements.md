@@ -1,9 +1,9 @@
 # Statements
 
-## Function declaration statement
+## Function definition statement
 
 - (ACCESS_MODIFIER)? fn IDENTIFIER ( (IDENTIFIER : TYPE,)* ) (=> TYPE)? BLOCK_EXPRESSION
 
-## Variable declaration statement
+## Variable definition statement
 
 - let (mut)? IDENTIFIER (: TYPE)? (= TYPE)? ;
