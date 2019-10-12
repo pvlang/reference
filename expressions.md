@@ -263,12 +263,12 @@ Paths are identifiers separated by `::`
 ## When expression
 
 - when EXPRESSION (as IDENTIFIER)? is {
-    (IS_ARM_ATOM ( or IS_ARM_ATOM )* ((provided EXPRESSION))? |> EXPRESSION ,)*
+    (
+      ((not)? in EXPRESSION | EXPRESSION | #PATTERN) ( or ((not)? in EXPRESSION | EXPRESSION | #PATTERN) )* ((provided EXPRESSION))? |> EXPRESSION ,
+      some IDENTIFIER ((provided EXPRESSION))? |> EXPRESSION ,
+      _ ((provided EXPRESSION))? |> EXPRESSION ,
+    )*
   }
-  
-where IS_ARM_ATOM is 
-
-- \# | #PATTERN | (not)? in EXPRESSION | EXPRESSION | some IDENTIFIER
 
 where PATTERN can be
 
@@ -292,7 +292,7 @@ where PATTERN can be
 
 ## Is expression
 
-- E (as IDENTIFIER)? is (# | #PATTERN | (not)? in EXPRESSION | EXPRESSION)
+- E (as IDENTIFIER)? is (#PATTERN | (not)? in EXPRESSION)
 
 ## Casting expression
 
