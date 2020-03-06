@@ -1,25 +1,24 @@
 # Types
 
-This document does not describe how to define your own types.
-Rather, it describes what can a type of variable be or what a function may return.
-
 ## Nothing type
 
-This type is like `void` in C. It has the size of 0 and used as a marker.
+It's like `void` in C.
+It has the size of 0, and it is used as a marker.
 
 - nothing
 
 ## Boolean type
 
-It can be either `true` or `false`.
-Internal representation is not required to be `true == 1`, `false == 0`.
+Can be either `true` or `false`.
+Its representation in memory is not required to be `true == 1`, `false == 0`.
 
 - bool
 
 ## Signed integer types
 
-Represented with _Two's complement_ in the memory.
-They start with **i** and end with the bit width of type (eg. `i32` is 32-bit wide integer with _Two's complement_ representation).
+Represented with _Two's Complement_ in the memory.
+They start with **i** and end with the bit width of type (eg. `i32` is 32-bit wide integer with _Two's Complement_ representation).
+`isize` is a signed integer type with the size of the machine word.
 
 - i8
 - i16
@@ -31,6 +30,7 @@ They start with **i** and end with the bit width of type (eg. `i32` is 32-bit wi
 ## Unsigned integer types
 
 They start with **u** and end with the bit width of type (eg. `u32` is 32-bit wide unsigned integer).
+`usize` is an unsigned integer type with the size of the machine word.
 
 - u8
 - u16
@@ -57,45 +57,51 @@ Basically `i8`.
 ## String type
 
 Always valid UTF-8 encoded sequence of bytes.
-Basically `{ ptr: &u8, length: usize }`
+Basically `{ buffer: *u8, length: usize }`
+Buffer is not owned.
 
 - string
 
 ## Pointer types
 
-No guarantees about the validity.
-
 - *T
 - *mut T
 
-## Non-NULL Pointer types
-
-Should not be null.
-Will be optimized accordingly.
-Should be used as default.
+## Reference types
 
 - &T
 - &mut T
 
+## Slice types
+
+Basically `{ buffer: *T, length: usize }`
+Buffer is not owned.
+
+- [T]
+- [mut T]
+
 ## Range type
 
-It can be bounded or unbounded with inclusive and exclusive bounds.
+Can be bounded or unbounded with inclusive and exclusive bounds.
+`T` cannot be a range type.
 
 - ..T..
 
 ## Array type
 
-A stack-allocated array of **T** with _constant-expression_ elements inside.
+A stack-allocated array of `T` with _constant-expression_ elements inside.
+`CE` stands for **Constant Expression**.
 
-- [T <| _constant-expression_]
+- [T <| CE]
 
 ## Tuple type
 
 Act like anonymous structs with the fields `0, 1, ..., n`.
-`()` a.k.a. empty tuple is also a valid type, and it has a size of 0.
+`()` a.k.a. empty tuple is also a valid type, and it has a size of 0 just like the nothing type.
+`CE` stands for **Constant Expression**.
 
 - (T1, T2, ..., TN)
-- (T <| _constant-expression_)
+- (T <| CE)
 
 ## Struct type
 
@@ -112,15 +118,15 @@ Mapped to a struct containing an enum for the tag and a union for possible data.
 
 ## User-defined types
 
-Types defined with `type Name = ...` statements.
-Can have a path before the name (eg. std::foo::Bar).
+Types defined with `type Name = ...;` statements.
+Can have a path (eg. std::foo::Bar).
 
 - Name
 
 ## Generic types
 
-Types defined with `@generic(...)` and then `type Name[...] = ...` statements.
-Generic parameters can be types or constant expressions.
+Types defined with `type Name[...] = ...;` statements.
+Generic parameters can be types, literals or constant expressions with a `$` in the beginning.
 Can have a path before the name (eg. std::foo::Bar).
 
-- Name[#T1, E1, #T2, E2, ..., #TN, EN]
+- Name[T1, T2, L1, L2, $CE1, $CE2]

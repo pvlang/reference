@@ -1,7 +1,5 @@
 # Expressions
 
-This document describes all the possible expressions a valid program can have.
-
 ## Literals
 
 ### Nothing literal
@@ -33,9 +31,7 @@ where
 - [DECIMAL_DIGIT] = [0..9]
 - [HEXADECIMAL_DIGIT] = [0..9 | A..F | a..f]
 
-There is no negative integer literals.
-However, if the unary `-` operator is applied to only a literal, they merge into a negative literal.
-This way overflow checking at integer literals can be implemented properly.
+There are no negative integer literals.
 
 ### Floating point literals
 
@@ -55,6 +51,14 @@ TODO
 ### String literals
 
 TODO
+
+### Duration literals
+
+- 10000ns
+- 1000ms
+- 100s
+- 10m
+- 1h
 
 ## Range expression
 
@@ -87,9 +91,9 @@ Every expression inside the full array expression must be of the same type.
 
 ### Repeating array expression
 
-`E1` is repeated _constant-expression_ times.
+`E1` is repeated `CE` times.
 
-- [E1 <| _constant-expression_]
+- [E <| CE]
 
 ## Tuple expression
 
@@ -99,13 +103,13 @@ Every expression inside the full array expression must be of the same type.
 
 ### Repeating tuple expression
 
-`E1` is repeated _constant-expression_ times.
+`E1` is repeated `CE` times.
 
-- (E1 <| _constant-expression_)
+- (E <| CE)
 
-## Struct expression
+## Anonymous struct expression
 
-- { field1: E1, field2: E2, ..., fieldN: EN }
+- @ { field1: E1, field2: E2, ..., fieldN: EN, ...E }
 
 ## Lambda expression
 
@@ -215,6 +219,10 @@ Basically it converts `(E1, E2, ..., EN)` into `E1, E2, ..., EN`.
 
 - E1[E2]
 
+## Ranged Indexing expression
+
+- TODO
+
 ## Field access expression
 
 - E.field
@@ -251,14 +259,13 @@ Paths are identifiers separated by `::`
 
 ## Block expression
 
-- {
-    (_statement_)*
-    E
-  }
+- { (_statement_)* E? }
 
 ## Conditional expression
 
-- if E _block_expression_ (else if E _block_expression_)* (else _block_expression_)?
+- if E _block_expression_
+  (else if E _block_expression_)*
+  (else _block_expression_)?
 
 ## When expression
 
@@ -296,7 +303,7 @@ where PATTERN can be
 
 ## Casting expression
 
-- (#T)E
+- (# T) E
 
 ## Parenthesized expression
 
