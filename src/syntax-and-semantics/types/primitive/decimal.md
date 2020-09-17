@@ -1,0 +1,3 @@
+# `decimal` Type
+
+Coming soon...

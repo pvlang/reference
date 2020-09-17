@@ -1,0 +1,14 @@
+[book]
+title = "The Protocol Verification Language Reference"
+authors = [
+    "Umut Şahin <umutsahin@protonmail.com>",
+]
+
+multilingual = false
+language = "en"
+
+[build]
+build-dir = "target"
+
+[output.html]
+git-repository-url = "https://github.com/pvlang/reference/"

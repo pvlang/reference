@@ -1,0 +1,1 @@
+# Static Variable Definition Statement

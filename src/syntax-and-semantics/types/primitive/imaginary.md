@@ -1,0 +1,3 @@
+# `imaginary` Type
+
+Coming soon...

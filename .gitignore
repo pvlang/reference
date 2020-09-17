@@ -1,3 +1,6 @@
+# Covers mdBook
+target
+
 # Covers Visual Studio Code
 .vscode
 
