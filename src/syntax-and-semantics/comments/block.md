@@ -4,11 +4,7 @@
 
 ```
 <block-comment> ::= "/*" <utf8-code-point>* "*/"
-                  | "/*"
-                        <utf8-code-point>*
-                        <block-comment>
-                        <utf8-code-point>*
-                    "*/"
+                  | "/*" <utf8-code-point>* <block-comment> <utf8-code-point>* "*/"
 ```
 
 ## Semantics

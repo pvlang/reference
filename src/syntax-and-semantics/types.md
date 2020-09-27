@@ -4,7 +4,6 @@
 
 ```
 <type> ::= <primitive-type>
-         | <range-type>
          | <pointer-type>
          | <reference-type>
          | <slice-type>
@@ -13,7 +12,7 @@
          | <struct-type>
          | <variant-type>
          | <named-type>
-         | <generic-type>
+         | <abstract-type>
 ```
 
 ## Semantics

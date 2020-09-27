@@ -8,5 +8,5 @@
 
 ## Semantics
 
-- It can contain floating-point numbers with arbitrary precision (limited by the memory).
-- Its representation is unspecified.
+- Its representation and size is unspecified.
+- It can contain floating-point numbers with arbitrary precision (limited by memory).

@@ -1,4 +1,4 @@
-# Path
+# Paths
 
 ## Syntax
 
@@ -8,7 +8,7 @@
               | "super"
               | "self"
 
-<path> ::= (<path-atom> "::")*
+<path> ::= (<path-atom> "::")* <path-atom>
 ```
 
 ## Semantics

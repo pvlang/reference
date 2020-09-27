@@ -1,3 +1,3 @@
-# Pointer Types
+# Type Checking
 
 Coming soon...

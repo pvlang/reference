@@ -9,4 +9,4 @@
 ## Semantics
 
 - It can contain a single **standard ASCII character**.
-- It's basically an **i8** with the constraint of being non-negative.
+- It is basically an **i8** with the constraint of being non-negative.

@@ -6,6 +6,7 @@
 <identifier> ::= [A-Za-z] "_"? ([A-Za-z0-9] "_"?)*
                | "_" ([A-Za-z0-9] "_"?)+
 ```
+
 ## Semantics
 
 - `_` is not an identifier by itself.

@@ -1,3 +1,0 @@
-# Manifest File
-
-Coming soon...

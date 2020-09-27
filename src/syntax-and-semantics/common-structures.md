@@ -1,3 +1,0 @@
-# Common Structures
-
-Coming soon...

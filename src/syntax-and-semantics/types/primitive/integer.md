@@ -8,5 +8,5 @@
 
 ## Semantics
 
-- It can contain all integers (limited by the memory).
-- Its representation is unspecified.
+- Its representation and size is unspecified.
+- It can contain **all integers** (limited by memory).

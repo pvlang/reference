@@ -3,10 +3,11 @@
 [Introduction](introduction.md)
 
 - [Build System](build-system.md)
-    - [Project Structure](build-system/project-structure.md)
-    - [Manifest File](build-system/manifest-file.md)
-    - [Module System](build-system/module-system.md)
-    - [Dependency Resolution](build-system/dependency-resolution.md)
+
+  - [Project Structure](build-system/project-structure.md)
+  - [Manifest File Format](build-system/manifest-file-format.md)
+  - [Module System](build-system/module-system.md)
+  - [Dependency Resolution Strategy](build-system/dependency-resolution-strategy.md)
 
 - [Syntax and Semantics](syntax-and-semantics.md)
 
@@ -15,6 +16,8 @@
     - [Block](syntax-and-semantics/comments/block.md)
 
   - [Identifiers](syntax-and-semantics/identifiers.md)
+
+  - [Paths](syntax-and-semantics/paths.md)
 
   - [Types](syntax-and-semantics/types.md)
     - [Primitive](syntax-and-semantics/types/primitive.md)
@@ -43,7 +46,6 @@
       - [char](syntax-and-semantics/types/primitive/char.md)
       - [string](syntax-and-semantics/types/primitive/string.md)
       - [duration](syntax-and-semantics/types/primitive/duration.md)
-    - [Range](syntax-and-semantics/types/range.md)
     - [Pointer](syntax-and-semantics/types/pointer.md)
     - [Reference](syntax-and-semantics/types/reference.md)
     - [Slice](syntax-and-semantics/types/slice.md)
@@ -52,11 +54,7 @@
     - [Struct](syntax-and-semantics/types/struct.md)
     - [Variant](syntax-and-semantics/types/variant.md)
     - [Named](syntax-and-semantics/types/named.md)
-    - [Generic](syntax-and-semantics/types/generic.md)
-
-  - [Special Types](syntax-and-semantics/special-types.md)
-    - [Optional](syntax-and-semantics/special-types/optional.md)
-    - [Result](syntax-and-semantics/special-types/result.md)
+    - [Abstract](syntax-and-semantics/types/abstract.md)
 
   - [Patterns](syntax-and-semantics/patterns.md)
     - [Tuple](syntax-and-semantics/patterns/tuple.md)
@@ -64,14 +62,13 @@
     - [Struct](syntax-and-semantics/patterns/struct.md)
     - [Type](syntax-and-semantics/patterns/type.md)
 
-  - [Common Structures](syntax-and-semantics/common-structures.md)
-    - [Path](syntax-and-semantics/common-structures/path.md)
-    - [Block](syntax-and-semantics/common-structures/block.md)
-    - [Conditional](syntax-and-semantics/common-structures/conditional.md)
-    - [When](syntax-and-semantics/common-structures/when.md)
-    - [Infinite Loop](syntax-and-semantics/common-structures/infinite-loop.md)
-    - [While Loop](syntax-and-semantics/common-structures/while-loop.md)
-    - [For Loop](syntax-and-semantics/common-structures/for-loop.md)
+  - [Flow Control Structures](syntax-and-semantics/flow-control-structures.md)
+    - [Block](syntax-and-semantics/flow-control-structures/block.md)
+    - [Conditional](syntax-and-semantics/flow-control-structures/conditional.md)
+    - [When](syntax-and-semantics/flow-control-structures/when.md)
+    - [Infinite Loop](syntax-and-semantics/flow-control-structures/infinite-loop.md)
+    - [While Loop](syntax-and-semantics/flow-control-structures/while-loop.md)
+    - [For Loop](syntax-and-semantics/flow-control-structures/for-loop.md)
 
   - [Expressions](syntax-and-semantics/expressions.md)
     - [Literal](syntax-and-semantics/expressions/literal.md)
@@ -99,6 +96,8 @@
     - [Is](syntax-and-semantics/expressions/is.md)
     - [Try](syntax-and-semantics/expressions/try.md)
     - [Lambda](syntax-and-semantics/expressions/lambda.md)
+    - [Machine](syntax-and-semantics/expressions/machine.md)
+    - [Trigger](syntax-and-semantics/expressions/trigger.md)
     - [Parenthesized](syntax-and-semantics/expressions/parenthesized.md)
     - [Block](syntax-and-semantics/expressions/block.md)
     - [Conditional](syntax-and-semantics/expressions/conditional.md)
@@ -109,11 +108,14 @@
 
   - [Expression Precedence](syntax-and-semantics/expression-precedence.md)
 
+  - [Specifications](syntax-and-semantics/specifications.md)
+
   - [Statements](syntax-and-semantics/statements.md)
     - [Import](syntax-and-semantics/statements/import.md)
     - [Export](syntax-and-semantics/statements/export.md)
     - [Alias Definition](syntax-and-semantics/statements/alias-definition.md)
     - [Type Definition](syntax-and-semantics/statements/type-definition.md)
+    - [Machine Definition](syntax-and-semantics/statements/machine-definition.md)
     - [Extension Definition](syntax-and-semantics/statements/extension-definition.md)
     - [Function Definition](syntax-and-semantics/statements/function-definition.md)
     - [Test Definition](syntax-and-semantics/statements/test-definition.md)
@@ -127,6 +129,8 @@
     - [Return](syntax-and-semantics/statements/return.md)
     - [Break](syntax-and-semantics/statements/break.md)
     - [Continue](syntax-and-semantics/statements/continue.md)
+    - [Assume](syntax-and-semantics/statements/assume.md)
+    - [Assert](syntax-and-semantics/statements/assert.md)
     - [Block](syntax-and-semantics/statements/block.md)
     - [Conditional](syntax-and-semantics/statements/conditional.md)
     - [When](syntax-and-semantics/statements/when.md)
@@ -136,5 +140,15 @@
 
   - [Special Interfaces](syntax-and-semantics/special-interfaces.md)
     - [Callable](syntax-and-semantics/special-interfaces/callable.md)
+    - [Range](syntax-and-semantics/special-interfaces/range.md)
+
+  - [Special Types](syntax-and-semantics/special-types.md)
+    - [Optional](syntax-and-semantics/special-types/optional.md)
+    - [Result](syntax-and-semantics/special-types/result.md)
 
   - [Name Resolution](syntax-and-semantics/name-resolution.md)
+  - [Constant Evaluation](syntax-and-semantics/constant-evaluation.md)
+  - [Type Checking](syntax-and-semantics/type-checking.md)
+  - [Type Inference](syntax-and-semantics/type-inference.md)
+
+  - [Complete Grammar](syntax-and-semantics/complete-grammar.md)
