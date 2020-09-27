@@ -64,6 +64,15 @@
     - [Struct](syntax-and-semantics/patterns/struct.md)
     - [Type](syntax-and-semantics/patterns/type.md)
 
+  - [Common Structures](syntax-and-semantics/common-structures.md)
+    - [Path](syntax-and-semantics/common-structures/path.md)
+    - [Block](syntax-and-semantics/common-structures/block.md)
+    - [Conditional](syntax-and-semantics/common-structures/conditional.md)
+    - [When](syntax-and-semantics/common-structures/when.md)
+    - [Infinite Loop](syntax-and-semantics/common-structures/infinite-loop.md)
+    - [While Loop](syntax-and-semantics/common-structures/while-loop.md)
+    - [For Loop](syntax-and-semantics/common-structures/for-loop.md)
+
   - [Expressions](syntax-and-semantics/expressions.md)
     - [Literal](syntax-and-semantics/expressions/literal.md)
       - [Boolean](syntax-and-semantics/expressions/literal/boolean.md)
@@ -79,6 +88,7 @@
     - [Tuple](syntax-and-semantics/expressions/tuple.md)
     - [Struct](syntax-and-semantics/expressions/struct.md)
     - [Indexing](syntax-and-semantics/expressions/indexing.md)
+    - [Ranged Indexing](syntax-and-semantics/expressions/ranged-indexing.md)
     - [Field Access](syntax-and-semantics/expressions/field-access.md)
     - [Call](syntax-and-semantics/expressions/call.md)
     - [Method Call](syntax-and-semantics/expressions/method-call.md)

@@ -4,7 +4,16 @@
 
 ```
 <type> ::= <primitive-type>
-         | TODO
+         | <range-type>
+         | <pointer-type>
+         | <reference-type>
+         | <slice-type>
+         | <array-type>
+         | <tuple-type>
+         | <struct-type>
+         | <variant-type>
+         | <named-type>
+         | <generic-type>
 ```
 
 ## Semantics

@@ -3,7 +3,7 @@
 ## Syntax
 
 ```
-<indexing-expression> ::= <expression> "[" <expression> "]"
+<ranged-indexing-expression> ::= <expression> <range-expression>
 ```
 
 ## Semantics

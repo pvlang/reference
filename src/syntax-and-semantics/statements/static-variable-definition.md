@@ -1,1 +1,3 @@
 # Static Variable Definition Statement
+
+Coming soon...
