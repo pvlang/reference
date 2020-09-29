@@ -3,10 +3,7 @@
 ## Syntax
 
 ```
-<generic-parameter>  ::= <type> | <expression>
-<generic-parameters> ::= <generic-parameter> ("," <generic-parameter>)* ","?
-
-<named-type> ::= <path> ("[" <generic-parameters> "]")?
+<named-type> ::= <path> <generic-arguments>?
 ```
 
 ## Semantics

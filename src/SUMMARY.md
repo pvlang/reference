@@ -19,6 +19,8 @@
 
   - [Paths](syntax-and-semantics/paths.md)
 
+  - [Generics](syntax-and-semantics/generics.md)
+
   - [Types](syntax-and-semantics/types.md)
     - [Primitive](syntax-and-semantics/types/primitive.md)
       - [bool](syntax-and-semantics/types/primitive/bool.md)
