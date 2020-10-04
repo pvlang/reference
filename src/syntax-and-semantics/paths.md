@@ -3,7 +3,7 @@
 ## Syntax
 
 ```
-<path-atom> ::= <identifier>
+<path-atom> ::= <identifier> <generic-arguments>?
               | "project"
               | "super"
               | "self"

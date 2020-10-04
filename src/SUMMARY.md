@@ -17,9 +17,9 @@
 
   - [Identifiers](syntax-and-semantics/identifiers.md)
 
-  - [Paths](syntax-and-semantics/paths.md)
-
   - [Generics](syntax-and-semantics/generics.md)
+
+  - [Paths](syntax-and-semantics/paths.md)
 
   - [Types](syntax-and-semantics/types.md)
     - [Primitive](syntax-and-semantics/types/primitive.md)
@@ -122,6 +122,7 @@
     - [Function Definition](syntax-and-semantics/statements/function-definition.md)
     - [Test Definition](syntax-and-semantics/statements/test-definition.md)
     - [Method Definition](syntax-and-semantics/statements/method-definition.md)
+    - [Operator Overload](syntax-and-semantics/statements/operator-overload.md)
     - [Interface Definition](syntax-and-semantics/statements/interface-definition.md)
     - [Constant Definition](syntax-and-semantics/statements/constant-definition.md)
     - [Static Variable Definition](syntax-and-semantics/statements/static-variable-definition.md)
@@ -131,6 +132,7 @@
     - [Return](syntax-and-semantics/statements/return.md)
     - [Break](syntax-and-semantics/statements/break.md)
     - [Continue](syntax-and-semantics/statements/continue.md)
+    - [Goto](syntax-and-semantics/statements/goto.md)
     - [Assume](syntax-and-semantics/statements/assume.md)
     - [Assert](syntax-and-semantics/statements/assert.md)
     - [Block](syntax-and-semantics/statements/block.md)
