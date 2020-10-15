@@ -160,6 +160,17 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#tuple-patterns" id="tuple-patterns">Tuple Patterns</a></h1>
+<h2><a class="header" href="#syntax" id="syntax">Syntax</a></h2>
+<pre><code>&lt;tuple-pattern-atom&gt; ::= &lt;identifier&gt; (&quot;:&quot; &lt;type&gt;)?
+                       | &quot;_&quot; (&quot;:&quot; &lt;type&gt;)?
+                       | &quot;is&quot; &lt;expression&gt;
+                       | &quot;is&quot; &quot;in&quot; &lt;expression&gt;
+                       | &quot;#&quot; &lt;pattern&gt;
+
+&lt;tuple-pattern&gt; ::= &quot;(&quot; (&lt;tuple-pattern-atom&gt; &quot;,&quot;)* &lt;tuple-pattern-atom&gt;? &quot;)&quot;
+                  | &quot;(&quot; (&lt;tuple-pattern-atom&gt; &quot;,&quot;)* &quot;..&quot; (&quot;:&quot; &lt;type&gt;)? (&quot;as&quot; &lt;identifier&gt;)? (&quot;,&quot; &lt;tuple-pattern-atom&gt; )* &quot;,&quot;? &quot;)&quot;
+</code></pre>
+<h2><a class="header" href="#semantics" id="semantics">Semantics</a></h2>
 <p>Coming soon...</p>
 
                     </main>

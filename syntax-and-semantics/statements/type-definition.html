@@ -163,13 +163,11 @@
 <h2><a class="header" href="#syntax" id="syntax">Syntax</a></h2>
 <pre><code>&lt;tuple-definition&gt;   ::= &quot;(&quot; (&lt;type&gt; &quot;,&quot;)* &lt;type&gt;? &quot;)&quot;
 &lt;struct-definition&gt;  ::= &quot;{&quot; (&lt;identifier&gt; &quot;:&quot; &lt;type&gt; &quot;,&quot;)* (&lt;identifier&gt; &quot;:&quot; &lt;type&gt;)? &quot;}&quot;
-&lt;variant-definition&gt; ::= &quot;(&quot; &quot;|&quot;? &lt;type&gt; (&quot;|&quot; &lt;type&gt;)+ &quot;)&quot;
+&lt;variant-definition&gt; ::= &quot;(&quot; &quot;|&quot;? (&lt;type&gt; | &lt;type-definition&gt;) (&quot;|&quot; (&lt;type&gt; | &lt;type-definition&gt;))+ &quot;)&quot;
 
-&lt;type-definition&gt; ::= &lt;tuple-definition&gt;
-                    | &lt;struct-definition&gt;
-                    | &lt;variant-definition&gt;
+&lt;type-definition&gt; ::= &quot;trivial&quot;? &quot;type&quot; &lt;identifier&gt; &lt;generic-parameters&gt;? (&quot;=&quot; (&lt;tuple-definition&gt; | &lt;struct-definition&gt; | &lt;variant-definition&gt;))?
 
-&lt;type-definition-statement&gt; ::= &quot;trivial&quot;? &quot;type&quot; &lt;identifier&gt; &lt;generic-parameters&gt;? (&quot;=&quot; &lt;type-definition&gt;)? &quot;;&quot;
+&lt;type-definition-statement&gt; ::= &lt;type-definition&gt; &quot;;&quot;
 </code></pre>
 <h2><a class="header" href="#semantics" id="semantics">Semantics</a></h2>
 <p>Coming soon...</p>

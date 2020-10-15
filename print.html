@@ -222,6 +222,11 @@
 
 &lt;generic-argument&gt;  ::= &lt;type&gt; | &lt;expression&gt;
 &lt;generic-arguments&gt; ::= &quot;[&quot; &lt;generic-argument&gt; (&quot;,&quot; &lt;generic-argument&gt;)* &quot;,&quot;? &quot;]&quot;
+
+&lt;generic-constraint-atom&gt; ::= (&quot;is&quot; | &quot;has&quot;) &lt;path&gt;
+&lt;generic-constraint&gt;      ::= &lt;generic-constraint-atom&gt; (&quot;and&quot; &lt;generic-constraint-atom&gt;)*
+&lt;generic-constraints&gt;     ::= &quot;where&quot; &lt;path&gt; &lt;generic-constraint&gt;
+                            | &quot;where&quot; &quot;{&quot; (&lt;path&gt; &lt;generic-constraint&gt; &quot;,&quot;)* (&lt;path&gt; &lt;generic-constraint&gt;)? &quot;}&quot;
 </code></pre>
 <h2><a class="header" href="#semantics-4" id="semantics-4">Semantics</a></h2>
 <ul>
@@ -233,6 +238,7 @@
               | &quot;project&quot;
               | &quot;super&quot;
               | &quot;self&quot;
+              | &quot;Self&quot;
 
 &lt;path&gt; ::= (&lt;path-atom&gt; &quot;::&quot;)* &lt;path-atom&gt;
 </code></pre>
@@ -593,71 +599,117 @@
 <li>Named types are used to referring types defined by either <code>&lt;type-definition-statement&gt;</code>s or <code>&lt;machine-definition-statement&gt;</code>s.</li>
 </ul>
 <h1><a class="header" href="#abstract-types" id="abstract-types">Abstract Types</a></h1>
+<h2><a class="header" href="#syntax-39" id="syntax-39">Syntax</a></h2>
+<pre><code>&lt;abstract-type&gt; ::= &lt;generic-constraint&gt;
+</code></pre>
+<h2><a class="header" href="#semantics-39" id="semantics-39">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#patterns" id="patterns">Patterns</a></h1>
-<h2><a class="header" href="#syntax-39" id="syntax-39">Syntax</a></h2>
+<h2><a class="header" href="#syntax-40" id="syntax-40">Syntax</a></h2>
 <pre><code>&lt;pattern&gt; ::= &lt;tuple-pattern&gt;
             | &lt;slice-pattern&gt;
             | &lt;struct-pattern&gt;
             | &lt;type-pattern&gt;
 </code></pre>
-<h2><a class="header" href="#semantics-39" id="semantics-39">Semantics</a></h2>
+<h2><a class="header" href="#semantics-40" id="semantics-40">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#tuple-patterns" id="tuple-patterns">Tuple Patterns</a></h1>
+<h2><a class="header" href="#syntax-41" id="syntax-41">Syntax</a></h2>
+<pre><code>&lt;tuple-pattern-atom&gt; ::= &lt;identifier&gt; (&quot;:&quot; &lt;type&gt;)?
+                       | &quot;_&quot; (&quot;:&quot; &lt;type&gt;)?
+                       | &quot;is&quot; &lt;expression&gt;
+                       | &quot;is&quot; &quot;in&quot; &lt;expression&gt;
+                       | &quot;#&quot; &lt;pattern&gt;
+
+&lt;tuple-pattern&gt; ::= &quot;(&quot; (&lt;tuple-pattern-atom&gt; &quot;,&quot;)* &lt;tuple-pattern-atom&gt;? &quot;)&quot;
+                  | &quot;(&quot; (&lt;tuple-pattern-atom&gt; &quot;,&quot;)* &quot;..&quot; (&quot;:&quot; &lt;type&gt;)? (&quot;as&quot; &lt;identifier&gt;)? (&quot;,&quot; &lt;tuple-pattern-atom&gt; )* &quot;,&quot;? &quot;)&quot;
+</code></pre>
+<h2><a class="header" href="#semantics-41" id="semantics-41">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#slice-patterns" id="slice-patterns">Slice Patterns</a></h1>
+<h2><a class="header" href="#syntax-42" id="syntax-42">Syntax</a></h2>
+<pre><code>&lt;slice-pattern-atom&gt; ::= &lt;identifier&gt; (&quot;:&quot; &lt;type&gt;)?
+                       | &quot;_&quot; (&quot;:&quot; &lt;type&gt;)?
+                       | &quot;is&quot; &lt;expression&gt;
+                       | &quot;is&quot; &quot;in&quot; &lt;expression&gt;
+                       | &quot;#&quot; &lt;pattern&gt;
+
+&lt;slice-pattern&gt; ::= &quot;[&quot; (&lt;slice-pattern-atom&gt; &quot;,&quot;)* &lt;slice-pattern-atom&gt;? &quot;]&quot;
+                  | &quot;[&quot; (&lt;slice-pattern-atom&gt; &quot;,&quot;)* &quot;..&quot; (&quot;:&quot; &lt;type&gt;)? (&quot;as&quot; &lt;identifier&gt;)? (&quot;,&quot; &lt;slice-pattern-atom&gt; )* &quot;,&quot;? &quot;]&quot;
+</code></pre>
+<h2><a class="header" href="#semantics-42" id="semantics-42">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#struct-patterns" id="struct-patterns">Struct Patterns</a></h1>
+<h2><a class="header" href="#syntax-43" id="syntax-43">Syntax</a></h2>
+<pre><code>&lt;struct-pattern-atom&gt; ::= &lt;identifier&gt; (&quot;:&quot; &lt;type&gt;)? (&quot;as&quot; &lt;identifier&gt;)?
+                        | &lt;identifier&gt; (&quot;:&quot; &lt;type&gt;)? (&quot;as&quot; (&lt;identifier&gt; | &quot;_&quot;))? &quot;is&quot; &lt;expression&gt;
+                        | &lt;identifier&gt; (&quot;:&quot; &lt;type&gt;)? (&quot;as&quot; (&lt;identifier&gt; | &quot;_&quot;))? &quot;is&quot; &quot;in&quot; &lt;expression&gt;
+                        | &lt;identifier&gt; (&quot;:&quot; &lt;type&gt;)? (&quot;as&quot; (&lt;identifier&gt; | &quot;_&quot;))? &quot;is&quot; &quot;#&quot; &lt;pattern&gt;
+
+&lt;struct-pattern&gt; ::= &quot;{&quot; (&lt;struct-pattern-atom&gt; &quot;,&quot;)* &lt;struct-pattern-atom&gt;? &quot;}&quot;
+                   | &quot;{&quot; (&lt;struct-pattern-atom&gt; &quot;,&quot;)* &quot;..&quot; (&quot;:&quot; &lt;type&gt;)? (&quot;as&quot; &lt;identifier&gt;)? &quot;,&quot;? &quot;}&quot;
+</code></pre>
+<h2><a class="header" href="#semantics-43" id="semantics-43">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#type-patterns" id="type-patterns">Type Patterns</a></h1>
+<h2><a class="header" href="#syntax-44" id="syntax-44">Syntax</a></h2>
+<pre><code>&lt;type-pattern&gt; ::= &lt;primitive-type&gt;
+                 | &lt;pointer-type&gt;
+                 | &lt;reference-type&gt;
+                 | &lt;array-type&gt;
+                 | &lt;named-type&gt; (&lt;tuple-pattern&gt; | &lt;struct-pattern&gt;)?
+</code></pre>
+<h2><a class="header" href="#semantics-44" id="semantics-44">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#flow-control-structures" id="flow-control-structures">Flow Control Structures</a></h1>
 <p>Coming soon...</p>
 <h1><a class="header" href="#block" id="block">Block</a></h1>
-<h2><a class="header" href="#syntax-40" id="syntax-40">Syntax</a></h2>
+<h2><a class="header" href="#syntax-45" id="syntax-45">Syntax</a></h2>
 <pre><code>&lt;block&gt; ::= &quot;{&quot; &lt;statement&gt;* &lt;expression&gt;? &quot;}&quot;
 </code></pre>
-<h2><a class="header" href="#semantics-40" id="semantics-40">Semantics</a></h2>
+<h2><a class="header" href="#semantics-45" id="semantics-45">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#conditional" id="conditional">Conditional</a></h1>
-<h2><a class="header" href="#syntax-41" id="syntax-41">Syntax</a></h2>
+<h2><a class="header" href="#syntax-46" id="syntax-46">Syntax</a></h2>
 <pre><code>&lt;if&gt;      ::= &quot;if&quot; &lt;expression&gt; &lt;block&gt;
 &lt;else-if&gt; ::= &quot;else&quot; &quot;if&quot; &lt;expression&gt; &lt;block&gt;
 &lt;else&gt;    ::= &quot;else&quot; &lt;block&gt;
 
 &lt;conditional&gt; ::= &lt;if&gt; &lt;else-if&gt;* &lt;else&gt;?
 </code></pre>
-<h2><a class="header" href="#semantics-41" id="semantics-41">Semantics</a></h2>
+<h2><a class="header" href="#semantics-46" id="semantics-46">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#when" id="when">When</a></h1>
-<h2><a class="header" href="#syntax-42" id="syntax-42">Syntax</a></h2>
-<pre><code>&lt;arm&gt; ::= &lt;expression&gt; &quot;=&gt;&quot; &lt;expression&gt;
-        | &quot;in&quot; &lt;expression&gt; &quot;=&gt;&quot; &lt;expression&gt;
-        | &quot;some&quot; &lt;identifier&gt; &quot;=&gt;&quot; &lt;expression&gt;
-        | &quot;#&quot; &lt;pattern&gt; &quot;=&gt;&quot; &lt;expression&gt;
-        | &quot;_&quot; &quot;=&gt;&quot; &lt;expression&gt;
+<h2><a class="header" href="#syntax-47" id="syntax-47">Syntax</a></h2>
+<pre><code>&lt;match&gt; ::= &lt;expression&gt;
+          | &quot;in&quot; &lt;expression&gt;
+          | &quot;some&quot; &lt;identifier&gt;
+          | &quot;#&quot; &lt;pattern&gt;
+          | &quot;_&quot;
+
+&lt;arm&gt; ::= (&lt;match&gt; &quot;or&quot;)* &lt;match&gt; (&quot;provided&quot; &lt;expression&gt;)? &quot;=&gt;&quot; &lt;expression&gt;
 
 &lt;when&gt; ::= &quot;when&quot; &lt;expression&gt; &quot;is&quot; &quot;{&quot; (&lt;arm&gt; &quot;,&quot;)* &lt;arm&gt;? &quot;}&quot;
 </code></pre>
-<h2><a class="header" href="#semantics-42" id="semantics-42">Semantics</a></h2>
+<h2><a class="header" href="#semantics-47" id="semantics-47">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#infinite-loop" id="infinite-loop">Infinite Loop</a></h1>
-<h2><a class="header" href="#syntax-43" id="syntax-43">Syntax</a></h2>
+<h2><a class="header" href="#syntax-48" id="syntax-48">Syntax</a></h2>
 <pre><code>&lt;infinite-loop&gt; ::= &quot;loop&quot; &lt;block&gt;
 </code></pre>
-<h2><a class="header" href="#semantics-43" id="semantics-43">Semantics</a></h2>
+<h2><a class="header" href="#semantics-48" id="semantics-48">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#while-loop" id="while-loop">While Loop</a></h1>
-<h2><a class="header" href="#syntax-44" id="syntax-44">Syntax</a></h2>
+<h2><a class="header" href="#syntax-49" id="syntax-49">Syntax</a></h2>
 <pre><code>&lt;while-loop&gt; ::= &quot;while&quot; &lt;expression&gt; &lt;block&gt;
 </code></pre>
-<h2><a class="header" href="#semantics-44" id="semantics-44">Semantics</a></h2>
+<h2><a class="header" href="#semantics-49" id="semantics-49">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#for-loop" id="for-loop">For Loop</a></h1>
-<h2><a class="header" href="#syntax-45" id="syntax-45">Syntax</a></h2>
+<h2><a class="header" href="#syntax-50" id="syntax-50">Syntax</a></h2>
 <pre><code>&lt;for-loop&gt; ::= &quot;for&quot; (&quot;&amp;&quot; &quot;mut&quot;?)? &lt;identifier&gt; &quot;in&quot; &lt;expression&gt; &lt;block&gt;
 </code></pre>
-<h2><a class="header" href="#semantics-45" id="semantics-45">Semantics</a></h2>
+<h2><a class="header" href="#semantics-50" id="semantics-50">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#expressions" id="expressions">Expressions</a></h1>
 <p>Coming soon...</p>
@@ -680,87 +732,87 @@
 <h1><a class="header" href="#item-expressions" id="item-expressions">Item Expressions</a></h1>
 <p>Coming soon...</p>
 <h1><a class="header" href="#range-expressions" id="range-expressions">Range Expressions</a></h1>
-<h2><a class="header" href="#syntax-46" id="syntax-46">Syntax</a></h2>
+<h2><a class="header" href="#syntax-51" id="syntax-51">Syntax</a></h2>
 <pre><code>&lt;range-expression&gt; ::= (&quot;[&quot; | &quot;(&quot;) &lt;expression&gt;? &quot;..&quot; &lt;expression&gt;? (&quot;)&quot; | &quot;]&quot;)
 </code></pre>
-<h2><a class="header" href="#semantics-46" id="semantics-46">Semantics</a></h2>
+<h2><a class="header" href="#semantics-51" id="semantics-51">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#array-expressions" id="array-expressions">Array Expressions</a></h1>
-<h2><a class="header" href="#syntax-47" id="syntax-47">Syntax</a></h2>
+<h2><a class="header" href="#syntax-52" id="syntax-52">Syntax</a></h2>
 <pre><code>&lt;array-expression&gt; ::= &quot;[&quot; (&lt;expression&gt; &quot;,&quot;)* &lt;expression&gt;? &quot;]&quot;
 </code></pre>
-<h2><a class="header" href="#semantics-47" id="semantics-47">Semantics</a></h2>
+<h2><a class="header" href="#semantics-52" id="semantics-52">Semantics</a></h2>
 <ul>
 <li>Inner <code>&lt;expression&gt;</code>s must have the same type.</li>
 <li>Type of them is <strong>[ @typeof(Es) ~ @countof(Es) ]</strong>.</li>
 </ul>
 <h1><a class="header" href="#tuple-expressions" id="tuple-expressions">Tuple Expressions</a></h1>
-<h2><a class="header" href="#syntax-48" id="syntax-48">Syntax</a></h2>
+<h2><a class="header" href="#syntax-53" id="syntax-53">Syntax</a></h2>
 <pre><code>&lt;tuple-expression&gt; ::= &quot;(&quot; &quot;)&quot;
                      | &quot;(&quot; (&lt;expression&gt; &quot;,&quot;)+ &lt;expression&gt;? &quot;)&quot;
 </code></pre>
-<h2><a class="header" href="#semantics-48" id="semantics-48">Semantics</a></h2>
+<h2><a class="header" href="#semantics-53" id="semantics-53">Semantics</a></h2>
 <ul>
 <li>Inner <code>&lt;expression&gt;</code>s could be of any type.</li>
 <li>Type of them is <strong>(@typeof(E1), @typeof(E2), ..., @typeof(EN))</strong>.</li>
 </ul>
 <h1><a class="header" href="#struct-expressions" id="struct-expressions">Struct Expressions</a></h1>
-<h2><a class="header" href="#syntax-49" id="syntax-49">Syntax</a></h2>
+<h2><a class="header" href="#syntax-54" id="syntax-54">Syntax</a></h2>
 <pre><code>&lt;struct-expression-atom&gt; ::= &lt;identifier&gt;
                            | &lt;identifier&gt; &quot;:&quot; &lt;expression&gt;
 
-&lt;struct-expression-base&gt; ::= &quot;{&quot; (&lt;struct-expression-atom&gt; &quot;,&quot;)* &quot;...&quot; &lt;expression&gt; &quot;}&quot;
+&lt;struct-expression-base&gt; ::= &quot;{&quot; (&lt;struct-expression-atom&gt; &quot;,&quot;)* &lt;spread-expression&gt; &quot;}&quot;
                            | &quot;{&quot; (&lt;struct-expression-atom&gt; &quot;,&quot;)* &lt;struct-expression-atom&gt;? &quot;}&quot;
 
 &lt;struct-expression&gt; ::= &quot;@&quot; &lt;struct-expression-base&gt;
                       | &lt;item-expression&gt; &lt;struct-expression-base&gt;
 </code></pre>
-<h2><a class="header" href="#semantics-49" id="semantics-49">Semantics</a></h2>
-<p>Coming soon...</p>
-<h1><a class="header" href="#indexing-expressions" id="indexing-expressions">Indexing Expressions</a></h1>
-<h2><a class="header" href="#syntax-50" id="syntax-50">Syntax</a></h2>
-<pre><code>&lt;indexing-expression&gt; ::= &lt;expression&gt; &quot;[&quot; &lt;expression&gt; &quot;]&quot;
-</code></pre>
-<h2><a class="header" href="#semantics-50" id="semantics-50">Semantics</a></h2>
-<p>Coming soon...</p>
-<h1><a class="header" href="#indexing-expressions-1" id="indexing-expressions-1">Indexing Expressions</a></h1>
-<h2><a class="header" href="#syntax-51" id="syntax-51">Syntax</a></h2>
-<pre><code>&lt;ranged-indexing-expression&gt; ::= &lt;expression&gt; &lt;range-expression&gt;
-</code></pre>
-<h2><a class="header" href="#semantics-51" id="semantics-51">Semantics</a></h2>
-<p>Coming soon...</p>
-<h1><a class="header" href="#field-access-expressions" id="field-access-expressions">Field Access Expressions</a></h1>
-<h2><a class="header" href="#syntax-52" id="syntax-52">Syntax</a></h2>
-<pre><code>&lt;field-access-expression&gt; ::= &lt;expression&gt; &quot;.&quot; &lt;identifier&gt;
-</code></pre>
-<h2><a class="header" href="#semantics-52" id="semantics-52">Semantics</a></h2>
-<p>Coming soon...</p>
-<h1><a class="header" href="#call-expressions" id="call-expressions">Call Expressions</a></h1>
-<h2><a class="header" href="#syntax-53" id="syntax-53">Syntax</a></h2>
-<pre><code>&lt;call-expression&gt; ::= &lt;expression&gt; &quot;(&quot; (&lt;expression&gt; &quot;,&quot;)* &lt;expression&gt;? &quot;)&quot;
-</code></pre>
-<h2><a class="header" href="#semantics-53" id="semantics-53">Semantics</a></h2>
-<p>Coming soon...</p>
-<h1><a class="header" href="#method-call-expressions" id="method-call-expressions">Method Call Expressions</a></h1>
-<h2><a class="header" href="#syntax-54" id="syntax-54">Syntax</a></h2>
-<pre><code>&lt;method-call-expression&gt; ::= &lt;expression&gt; &quot;.&quot; &lt;identifier&gt; &quot;(&quot; (&lt;expression&gt; &quot;,&quot;)* &lt;expression&gt;? &quot;)&quot;
-</code></pre>
 <h2><a class="header" href="#semantics-54" id="semantics-54">Semantics</a></h2>
 <p>Coming soon...</p>
-<h1><a class="header" href="#spread-expressions" id="spread-expressions">Spread Expressions</a></h1>
+<h1><a class="header" href="#indexing-expressions" id="indexing-expressions">Indexing Expressions</a></h1>
 <h2><a class="header" href="#syntax-55" id="syntax-55">Syntax</a></h2>
-<pre><code>&lt;spread-expression&gt; ::= &quot;...&quot; &lt;expression&gt;
+<pre><code>&lt;indexing-expression&gt; ::= &lt;expression&gt; &quot;[&quot; &lt;expression&gt; &quot;]&quot;
 </code></pre>
 <h2><a class="header" href="#semantics-55" id="semantics-55">Semantics</a></h2>
 <p>Coming soon...</p>
-<h1><a class="header" href="#cast-expressions" id="cast-expressions">Cast Expressions</a></h1>
+<h1><a class="header" href="#indexing-expressions-1" id="indexing-expressions-1">Indexing Expressions</a></h1>
 <h2><a class="header" href="#syntax-56" id="syntax-56">Syntax</a></h2>
-<pre><code>&lt;cast-expression&gt; ::= &lt;expression&gt; &quot;.&quot; &quot;(&quot; &lt;type&gt; &quot;)&quot;
+<pre><code>&lt;ranged-indexing-expression&gt; ::= &lt;expression&gt; &lt;range-expression&gt;
 </code></pre>
 <h2><a class="header" href="#semantics-56" id="semantics-56">Semantics</a></h2>
 <p>Coming soon...</p>
-<h1><a class="header" href="#unary-expressions" id="unary-expressions">Unary Expressions</a></h1>
+<h1><a class="header" href="#field-access-expressions" id="field-access-expressions">Field Access Expressions</a></h1>
 <h2><a class="header" href="#syntax-57" id="syntax-57">Syntax</a></h2>
+<pre><code>&lt;field-access-expression&gt; ::= &lt;expression&gt; &quot;.&quot; &lt;identifier&gt;
+</code></pre>
+<h2><a class="header" href="#semantics-57" id="semantics-57">Semantics</a></h2>
+<p>Coming soon...</p>
+<h1><a class="header" href="#call-expressions" id="call-expressions">Call Expressions</a></h1>
+<h2><a class="header" href="#syntax-58" id="syntax-58">Syntax</a></h2>
+<pre><code>&lt;call-expression&gt; ::= &lt;expression&gt; &quot;(&quot; (&lt;expression&gt; &quot;,&quot;)* &lt;expression&gt;? &quot;)&quot;
+</code></pre>
+<h2><a class="header" href="#semantics-58" id="semantics-58">Semantics</a></h2>
+<p>Coming soon...</p>
+<h1><a class="header" href="#method-call-expressions" id="method-call-expressions">Method Call Expressions</a></h1>
+<h2><a class="header" href="#syntax-59" id="syntax-59">Syntax</a></h2>
+<pre><code>&lt;method-call-expression&gt; ::= &lt;expression&gt; &quot;.&quot; &lt;identifier&gt; &quot;(&quot; (&lt;expression&gt; &quot;,&quot;)* &lt;expression&gt;? &quot;)&quot;
+</code></pre>
+<h2><a class="header" href="#semantics-59" id="semantics-59">Semantics</a></h2>
+<p>Coming soon...</p>
+<h1><a class="header" href="#spread-expressions" id="spread-expressions">Spread Expressions</a></h1>
+<h2><a class="header" href="#syntax-60" id="syntax-60">Syntax</a></h2>
+<pre><code>&lt;spread-expression&gt; ::= &quot;...&quot; &lt;expression&gt;
+</code></pre>
+<h2><a class="header" href="#semantics-60" id="semantics-60">Semantics</a></h2>
+<p>Coming soon...</p>
+<h1><a class="header" href="#cast-expressions" id="cast-expressions">Cast Expressions</a></h1>
+<h2><a class="header" href="#syntax-61" id="syntax-61">Syntax</a></h2>
+<pre><code>&lt;cast-expression&gt; ::= &lt;expression&gt; &quot;.&quot; &quot;(&quot; &lt;type&gt; &quot;)&quot;
+</code></pre>
+<h2><a class="header" href="#semantics-61" id="semantics-61">Semantics</a></h2>
+<p>Coming soon...</p>
+<h1><a class="header" href="#unary-expressions" id="unary-expressions">Unary Expressions</a></h1>
+<h2><a class="header" href="#syntax-62" id="syntax-62">Syntax</a></h2>
 <pre><code>&lt;unary-operator&gt; ::= &quot;-&quot;
                    | &quot;!&quot;
                    | &quot;&amp;&quot;
@@ -769,10 +821,10 @@
 
 &lt;unary-expression&gt; ::= &lt;unary-operator&gt; &lt;expression&gt;
 </code></pre>
-<h2><a class="header" href="#semantics-57" id="semantics-57">Semantics</a></h2>
+<h2><a class="header" href="#semantics-62" id="semantics-62">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#binary-expressions" id="binary-expressions">Binary Expressions</a></h1>
-<h2><a class="header" href="#syntax-58" id="syntax-58">Syntax</a></h2>
+<h2><a class="header" href="#syntax-63" id="syntax-63">Syntax</a></h2>
 <pre><code>&lt;binary-operator&gt; ::= &quot;=&quot;
                     | &quot;+&quot;
                     | &quot;+=&quot;
@@ -806,7 +858,7 @@
 
 &lt;binary-expression&gt; ::= &lt;expression&gt; &lt;binary-operator&gt; &lt;expression&gt;
 </code></pre>
-<h2><a class="header" href="#semantics-58" id="semantics-58">Semantics</a></h2>
+<h2><a class="header" href="#semantics-63" id="semantics-63">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#is-expressions" id="is-expressions">Is Expressions</a></h1>
 <p>Coming soon...</p>
@@ -819,31 +871,51 @@
 <h1><a class="header" href="#trigger-expressions" id="trigger-expressions">Trigger Expressions</a></h1>
 <p>Coming soon...</p>
 <h1><a class="header" href="#parenthesized-expressions" id="parenthesized-expressions">Parenthesized Expressions</a></h1>
-<h2><a class="header" href="#syntax-59" id="syntax-59">Syntax</a></h2>
+<h2><a class="header" href="#syntax-64" id="syntax-64">Syntax</a></h2>
 <pre><code>&lt;parenthesized-expression&gt; ::= &quot;(&quot; &lt;expression&gt; &quot;)&quot;
 </code></pre>
-<h2><a class="header" href="#semantics-59" id="semantics-59">Semantics</a></h2>
+<h2><a class="header" href="#semantics-64" id="semantics-64">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#block-expressions" id="block-expressions">Block Expressions</a></h1>
-<h2><a class="header" href="#syntax-60" id="syntax-60">Syntax</a></h2>
+<h2><a class="header" href="#syntax-65" id="syntax-65">Syntax</a></h2>
 <pre><code>&lt;block-expression&gt; ::= &lt;block&gt;
 </code></pre>
-<h2><a class="header" href="#semantics-60" id="semantics-60">Semantics</a></h2>
+<h2><a class="header" href="#semantics-65" id="semantics-65">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#conditional-expressions" id="conditional-expressions">Conditional Expressions</a></h1>
+<h2><a class="header" href="#syntax-66" id="syntax-66">Syntax</a></h2>
+<pre><code>&lt;conditional-expression&gt; ::= &lt;conditional&gt;
+</code></pre>
+<h2><a class="header" href="#semantics-66" id="semantics-66">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#when-expressions" id="when-expressions">When Expressions</a></h1>
+<h2><a class="header" href="#syntax-67" id="syntax-67">Syntax</a></h2>
+<pre><code>&lt;when-expression&gt; ::= &lt;when&gt;
+</code></pre>
+<h2><a class="header" href="#semantics-67" id="semantics-67">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#infinite-loop-expressions" id="infinite-loop-expressions">Infinite Loop Expressions</a></h1>
+<h2><a class="header" href="#syntax-68" id="syntax-68">Syntax</a></h2>
+<pre><code>&lt;infinite-loop-expression&gt; ::= &lt;infinite-loop&gt;
+</code></pre>
+<h2><a class="header" href="#semantics-68" id="semantics-68">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#while-loop-expressions" id="while-loop-expressions">While Loop Expressions</a></h1>
+<h2><a class="header" href="#syntax-69" id="syntax-69">Syntax</a></h2>
+<pre><code>&lt;while-loop-expression&gt; ::= &lt;while-loop&gt;
+</code></pre>
+<h2><a class="header" href="#semantics-69" id="semantics-69">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#for-loop-expressions" id="for-loop-expressions">For Loop Expressions</a></h1>
+<h2><a class="header" href="#syntax-70" id="syntax-70">Syntax</a></h2>
+<pre><code>&lt;for-loop-expression&gt; ::= &lt;for-loop&gt;
+</code></pre>
+<h2><a class="header" href="#semantics-70" id="semantics-70">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#expression-precedence" id="expression-precedence">Expression Precedence</a></h1>
 <p>Coming soon...</p>
 <h1><a class="header" href="#specifications" id="specifications">Specifications</a></h1>
-<h2><a class="header" href="#syntax-61" id="syntax-61">Syntax</a></h2>
+<h2><a class="header" href="#syntax-71" id="syntax-71">Syntax</a></h2>
 <pre><code>&lt;assumes&gt; ::= &quot;assumes&quot; &lt;TODO&gt;
 
 &lt;requires&gt; ::= &quot;requires&quot; &lt;TODO&gt;
@@ -852,12 +924,12 @@
 
 &lt;specification&gt; ::= &lt;assumes&gt;? &lt;requires&gt;? &lt;ensures&gt;?
 </code></pre>
-<h2><a class="header" href="#semantics-61" id="semantics-61">Semantics</a></h2>
+<h2><a class="header" href="#semantics-71" id="semantics-71">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#statements" id="statements">Statements</a></h1>
 <p>Coming soon...</p>
 <h1><a class="header" href="#import-statement" id="import-statement">Import Statement</a></h1>
-<h2><a class="header" href="#syntax-62" id="syntax-62">Syntax</a></h2>
+<h2><a class="header" href="#syntax-72" id="syntax-72">Syntax</a></h2>
 <pre><code>&lt;item-import&gt; ::= &lt;path&gt; (&quot;as&quot; &lt;identifier&gt;)?
 &lt;glob-import&gt; ::= &lt;path&gt; &quot;::&quot; &quot;*&quot;
 &lt;nested-import&gt; ::= &lt;path&gt; &quot;::&quot; &lt;imports&gt;
@@ -870,10 +942,10 @@
 
 &lt;import-statement&gt; ::= &quot;import&quot; (&lt;import&gt; | &lt;imports&gt;) &quot;;&quot;
 </code></pre>
-<h2><a class="header" href="#semantics-62" id="semantics-62">Semantics</a></h2>
+<h2><a class="header" href="#semantics-72" id="semantics-72">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#export-statement" id="export-statement">Export Statement</a></h1>
-<h2><a class="header" href="#syntax-63" id="syntax-63">Syntax</a></h2>
+<h2><a class="header" href="#syntax-73" id="syntax-73">Syntax</a></h2>
 <pre><code>&lt;item-export&gt; ::= &lt;path&gt; (&quot;as&quot; &lt;identifier&gt;)?
 &lt;glob-export&gt; ::= &lt;path&gt; &quot;::&quot; &quot;*&quot;
 &lt;nested-export&gt; ::= &lt;path&gt; &quot;::&quot; &lt;exports&gt;
@@ -886,48 +958,46 @@
 
 &lt;export-statement&gt; ::= &quot;export&quot; (&lt;export&gt; | &lt;exports&gt;) &quot;;&quot;
 </code></pre>
-<h2><a class="header" href="#semantics-63" id="semantics-63">Semantics</a></h2>
+<h2><a class="header" href="#semantics-73" id="semantics-73">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#alias-definition-statement" id="alias-definition-statement">Alias Definition Statement</a></h1>
 <p>Coming soon...</p>
 <h1><a class="header" href="#type-definition-statement" id="type-definition-statement">Type Definition Statement</a></h1>
-<h2><a class="header" href="#syntax-64" id="syntax-64">Syntax</a></h2>
+<h2><a class="header" href="#syntax-74" id="syntax-74">Syntax</a></h2>
 <pre><code>&lt;tuple-definition&gt;   ::= &quot;(&quot; (&lt;type&gt; &quot;,&quot;)* &lt;type&gt;? &quot;)&quot;
 &lt;struct-definition&gt;  ::= &quot;{&quot; (&lt;identifier&gt; &quot;:&quot; &lt;type&gt; &quot;,&quot;)* (&lt;identifier&gt; &quot;:&quot; &lt;type&gt;)? &quot;}&quot;
-&lt;variant-definition&gt; ::= &quot;(&quot; &quot;|&quot;? &lt;type&gt; (&quot;|&quot; &lt;type&gt;)+ &quot;)&quot;
+&lt;variant-definition&gt; ::= &quot;(&quot; &quot;|&quot;? (&lt;type&gt; | &lt;type-definition&gt;) (&quot;|&quot; (&lt;type&gt; | &lt;type-definition&gt;))+ &quot;)&quot;
 
-&lt;type-definition&gt; ::= &lt;tuple-definition&gt;
-                    | &lt;struct-definition&gt;
-                    | &lt;variant-definition&gt;
+&lt;type-definition&gt; ::= &quot;trivial&quot;? &quot;type&quot; &lt;identifier&gt; &lt;generic-parameters&gt;? (&quot;=&quot; (&lt;tuple-definition&gt; | &lt;struct-definition&gt; | &lt;variant-definition&gt;))?
 
-&lt;type-definition-statement&gt; ::= &quot;trivial&quot;? &quot;type&quot; &lt;identifier&gt; &lt;generic-parameters&gt;? (&quot;=&quot; &lt;type-definition&gt;)? &quot;;&quot;
+&lt;type-definition-statement&gt; ::= &lt;type-definition&gt; &quot;;&quot;
 </code></pre>
-<h2><a class="header" href="#semantics-64" id="semantics-64">Semantics</a></h2>
+<h2><a class="header" href="#semantics-74" id="semantics-74">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#machine-definition-statement" id="machine-definition-statement">Machine Definition Statement</a></h1>
 <p>Coming soon...</p>
 <h1><a class="header" href="#extension-definition-statement" id="extension-definition-statement">Extension Definition Statement</a></h1>
-<h2><a class="header" href="#syntax-65" id="syntax-65">Syntax</a></h2>
+<h2><a class="header" href="#syntax-75" id="syntax-75">Syntax</a></h2>
 <pre><code>&lt;extension-definition-statement&gt; ::= &lt;identifier&gt; &lt;generic-parameters&gt; &quot;extension&quot; &quot;of&quot; &lt;type&gt; &quot;=&quot; &lt;block&gt; &quot;;&quot;
 </code></pre>
-<h2><a class="header" href="#semantics-65" id="semantics-65">Semantics</a></h2>
+<h2><a class="header" href="#semantics-75" id="semantics-75">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#function-definition-statement" id="function-definition-statement">Function Definition Statement</a></h1>
-<h2><a class="header" href="#syntax-66" id="syntax-66">Syntax</a></h2>
+<h2><a class="header" href="#syntax-76" id="syntax-76">Syntax</a></h2>
 <pre><code>&lt;function-parameters&gt; ::= &quot;(&quot; (&lt;identifier&gt; &quot;:&quot; &lt;type&gt; &quot;,&quot;)* (&lt;identifier&gt; &quot;:&quot; &lt;type&gt;)? &quot;)&quot;
 
 &lt;function-definition-statement&gt; ::= &quot;const&quot;? &quot;fn&quot; &lt;identifier&gt; &lt;generic-parameters&gt; &lt;function-parameters&gt; &quot;=&quot; &lt;expression&gt; &quot;;&quot;
 </code></pre>
-<h2><a class="header" href="#semantics-66" id="semantics-66">Semantics</a></h2>
+<h2><a class="header" href="#semantics-76" id="semantics-76">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#test-definition-statement" id="test-definition-statement">Test Definition Statement</a></h1>
-<h2><a class="header" href="#syntax-67" id="syntax-67">Syntax</a></h2>
+<h2><a class="header" href="#syntax-77" id="syntax-77">Syntax</a></h2>
 <pre><code>&lt;test-definition-statement&gt; ::= &quot;@test&quot; &quot;(&quot; &lt;string-literal&gt; &quot;)&quot; &quot;=&quot; &lt;block&gt; &quot;;&quot;
 </code></pre>
-<h2><a class="header" href="#semantics-67" id="semantics-67">Semantics</a></h2>
+<h2><a class="header" href="#semantics-77" id="semantics-77">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#method-definition-statement" id="method-definition-statement">Method Definition Statement</a></h1>
-<h2><a class="header" href="#syntax-68" id="syntax-68">Syntax</a></h2>
+<h2><a class="header" href="#syntax-78" id="syntax-78">Syntax</a></h2>
 <pre><code>&lt;self-parameter&gt; ::= &quot;self&quot;
                    | &quot;&amp;&quot; &quot;self&quot;
                    | &quot;&amp;&quot; &quot;mut&quot; &quot;self&quot;
@@ -936,93 +1006,113 @@
 
 &lt;method-definition-statement&gt; ::= &quot;const&quot;? &quot;fn&quot; &lt;identifier&gt; &lt;generic-parameters&gt; &lt;method-parameters&gt; &quot;=&quot; &lt;expression&gt; &quot;;&quot;
 </code></pre>
-<h2><a class="header" href="#semantics-68" id="semantics-68">Semantics</a></h2>
+<h2><a class="header" href="#semantics-78" id="semantics-78">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#operator-overload-statement" id="operator-overload-statement">Operator Overload Statement</a></h1>
 <p>Coming soon...</p>
 <h1><a class="header" href="#interface-definition-statement" id="interface-definition-statement">Interface Definition Statement</a></h1>
 <p>Coming soon...</p>
 <h1><a class="header" href="#constant-definition-statement" id="constant-definition-statement">Constant Definition Statement</a></h1>
-<h2><a class="header" href="#syntax-69" id="syntax-69">Syntax</a></h2>
-<pre><code>&lt;constant-definition-statement&gt; ::= &quot;const&quot; &lt;identifier&gt; &quot;:&quot; &lt;type&gt; &quot;=&quot; &lt;expression&gt; &quot;;&quot;
-</code></pre>
-<h2><a class="header" href="#semantics-69" id="semantics-69">Semantics</a></h2>
-<p>Coming soon...</p>
-<h1><a class="header" href="#static-variable-definition-statement" id="static-variable-definition-statement">Static Variable Definition Statement</a></h1>
-<h2><a class="header" href="#syntax-70" id="syntax-70">Syntax</a></h2>
-<pre><code>&lt;static-variable-definition-statement&gt; ::= &quot;static&quot; &quot;mut&quot;? &lt;identifier&gt; &quot;:&quot; &lt;type&gt; &quot;=&quot; &lt;expression&gt; &quot;;&quot;
-</code></pre>
-<h2><a class="header" href="#semantics-70" id="semantics-70">Semantics</a></h2>
-<p>Coming soon...</p>
-<h1><a class="header" href="#local-variable-definition-statement" id="local-variable-definition-statement">Local Variable Definition Statement</a></h1>
-<h2><a class="header" href="#syntax-71" id="syntax-71">Syntax</a></h2>
-<pre><code>&lt;local-variable-definition-statement&gt; ::= &quot;let&quot; &quot;mut&quot;? &lt;identifier&gt; (&quot;:&quot; &lt;type&gt;)? (&quot;=&quot; &lt;expression&gt;)? &quot;;&quot;
-</code></pre>
-<h2><a class="header" href="#semantics-71" id="semantics-71">Semantics</a></h2>
-<p>Coming soon...</p>
-<h1><a class="header" href="#expression-statement" id="expression-statement">Expression Statement</a></h1>
-<h2><a class="header" href="#syntax-72" id="syntax-72">Syntax</a></h2>
-<pre><code>&lt;expression-statement&gt; ::= &lt;expression&gt; &quot;;&quot;
-</code></pre>
-<h2><a class="header" href="#semantics-72" id="semantics-72">Semantics</a></h2>
-<p>Coming soon...</p>
-<h1><a class="header" href="#defer-statement" id="defer-statement">Defer Statement</a></h1>
-<h2><a class="header" href="#syntax-73" id="syntax-73">Syntax</a></h2>
-<pre><code>&lt;defer-statement&gt; ::= &quot;defer&quot; &lt;expression&gt; &quot;;&quot;
-</code></pre>
-<h2><a class="header" href="#semantics-73" id="semantics-73">Semantics</a></h2>
-<p>Coming soon...</p>
-<h1><a class="header" href="#return-statement" id="return-statement">Return Statement</a></h1>
-<h2><a class="header" href="#syntax-74" id="syntax-74">Syntax</a></h2>
-<pre><code>&lt;return-statement&gt; ::= &quot;return&quot; &lt;expression&gt;? &quot;;&quot;
-</code></pre>
-<h2><a class="header" href="#semantics-74" id="semantics-74">Semantics</a></h2>
-<p>Coming soon...</p>
-<h1><a class="header" href="#break-statement" id="break-statement">Break Statement</a></h1>
-<h2><a class="header" href="#syntax-75" id="syntax-75">Syntax</a></h2>
-<pre><code>&lt;break-statement&gt; ::= &quot;break&quot; &lt;expression&gt;? &quot;;&quot;
-</code></pre>
-<h2><a class="header" href="#semantics-75" id="semantics-75">Semantics</a></h2>
-<p>Coming soon...</p>
-<h1><a class="header" href="#continue-statement" id="continue-statement">Continue Statement</a></h1>
-<h2><a class="header" href="#syntax-76" id="syntax-76">Syntax</a></h2>
-<pre><code>&lt;continue-statement&gt; ::= &quot;continue&quot; &quot;;&quot;
-</code></pre>
-<h2><a class="header" href="#semantics-76" id="semantics-76">Semantics</a></h2>
-<p>Coming soon...</p>
-<h1><a class="header" href="#goto-statement" id="goto-statement">Goto Statement</a></h1>
-<h2><a class="header" href="#syntax-77" id="syntax-77">Syntax</a></h2>
-<pre><code>&lt;goto-statement&gt; ::= &quot;goto&quot; &lt;identifier&gt; &quot;;&quot;
-</code></pre>
-<h2><a class="header" href="#semantics-77" id="semantics-77">Semantics</a></h2>
-<p>Coming soon...</p>
-<h1><a class="header" href="#assume-statement" id="assume-statement">Assume Statement</a></h1>
-<h2><a class="header" href="#syntax-78" id="syntax-78">Syntax</a></h2>
-<pre><code>&lt;assume-statement&gt; ::= &quot;assume&quot; &lt;expression&gt; &quot;;&quot;
-</code></pre>
-<h2><a class="header" href="#semantics-78" id="semantics-78">Semantics</a></h2>
-<p>Coming soon...</p>
-<h1><a class="header" href="#assert-statement" id="assert-statement">Assert Statement</a></h1>
 <h2><a class="header" href="#syntax-79" id="syntax-79">Syntax</a></h2>
-<pre><code>&lt;assert-statement&gt; ::= &quot;assert&quot; &lt;expression&gt; &quot;;&quot;
+<pre><code>&lt;constant-definition-statement&gt; ::= &quot;const&quot; &lt;identifier&gt; &quot;:&quot; &lt;type&gt; &quot;=&quot; &lt;expression&gt; &quot;;&quot;
 </code></pre>
 <h2><a class="header" href="#semantics-79" id="semantics-79">Semantics</a></h2>
 <p>Coming soon...</p>
-<h1><a class="header" href="#block-statement" id="block-statement">Block Statement</a></h1>
+<h1><a class="header" href="#static-variable-definition-statement" id="static-variable-definition-statement">Static Variable Definition Statement</a></h1>
 <h2><a class="header" href="#syntax-80" id="syntax-80">Syntax</a></h2>
-<pre><code>&lt;block-statement&gt; ::= &lt;block&gt;
+<pre><code>&lt;static-variable-definition-statement&gt; ::= &quot;static&quot; &quot;mut&quot;? &lt;identifier&gt; &quot;:&quot; &lt;type&gt; &quot;=&quot; &lt;expression&gt; &quot;;&quot;
 </code></pre>
 <h2><a class="header" href="#semantics-80" id="semantics-80">Semantics</a></h2>
 <p>Coming soon...</p>
+<h1><a class="header" href="#local-variable-definition-statement" id="local-variable-definition-statement">Local Variable Definition Statement</a></h1>
+<h2><a class="header" href="#syntax-81" id="syntax-81">Syntax</a></h2>
+<pre><code>&lt;local-variable-definition-statement&gt; ::= &quot;let&quot; &quot;mut&quot;? &lt;identifier&gt; (&quot;:&quot; &lt;type&gt;)? (&quot;=&quot; &lt;expression&gt;)? &quot;;&quot;
+</code></pre>
+<h2><a class="header" href="#semantics-81" id="semantics-81">Semantics</a></h2>
+<p>Coming soon...</p>
+<h1><a class="header" href="#expression-statement" id="expression-statement">Expression Statement</a></h1>
+<h2><a class="header" href="#syntax-82" id="syntax-82">Syntax</a></h2>
+<pre><code>&lt;expression-statement&gt; ::= &lt;expression&gt; &quot;;&quot;
+</code></pre>
+<h2><a class="header" href="#semantics-82" id="semantics-82">Semantics</a></h2>
+<p>Coming soon...</p>
+<h1><a class="header" href="#defer-statement" id="defer-statement">Defer Statement</a></h1>
+<h2><a class="header" href="#syntax-83" id="syntax-83">Syntax</a></h2>
+<pre><code>&lt;defer-statement&gt; ::= &quot;defer&quot; &lt;expression&gt; &quot;;&quot;
+</code></pre>
+<h2><a class="header" href="#semantics-83" id="semantics-83">Semantics</a></h2>
+<p>Coming soon...</p>
+<h1><a class="header" href="#return-statement" id="return-statement">Return Statement</a></h1>
+<h2><a class="header" href="#syntax-84" id="syntax-84">Syntax</a></h2>
+<pre><code>&lt;return-statement&gt; ::= &quot;return&quot; &lt;expression&gt;? &quot;;&quot;
+</code></pre>
+<h2><a class="header" href="#semantics-84" id="semantics-84">Semantics</a></h2>
+<p>Coming soon...</p>
+<h1><a class="header" href="#break-statement" id="break-statement">Break Statement</a></h1>
+<h2><a class="header" href="#syntax-85" id="syntax-85">Syntax</a></h2>
+<pre><code>&lt;break-statement&gt; ::= &quot;break&quot; &lt;expression&gt;? &quot;;&quot;
+</code></pre>
+<h2><a class="header" href="#semantics-85" id="semantics-85">Semantics</a></h2>
+<p>Coming soon...</p>
+<h1><a class="header" href="#continue-statement" id="continue-statement">Continue Statement</a></h1>
+<h2><a class="header" href="#syntax-86" id="syntax-86">Syntax</a></h2>
+<pre><code>&lt;continue-statement&gt; ::= &quot;continue&quot; &quot;;&quot;
+</code></pre>
+<h2><a class="header" href="#semantics-86" id="semantics-86">Semantics</a></h2>
+<p>Coming soon...</p>
+<h1><a class="header" href="#goto-statement" id="goto-statement">Goto Statement</a></h1>
+<h2><a class="header" href="#syntax-87" id="syntax-87">Syntax</a></h2>
+<pre><code>&lt;goto-statement&gt; ::= &quot;goto&quot; &lt;identifier&gt; &quot;;&quot;
+</code></pre>
+<h2><a class="header" href="#semantics-87" id="semantics-87">Semantics</a></h2>
+<p>Coming soon...</p>
+<h1><a class="header" href="#assume-statement" id="assume-statement">Assume Statement</a></h1>
+<h2><a class="header" href="#syntax-88" id="syntax-88">Syntax</a></h2>
+<pre><code>&lt;assume-statement&gt; ::= &quot;assume&quot; &lt;expression&gt; &quot;;&quot;
+</code></pre>
+<h2><a class="header" href="#semantics-88" id="semantics-88">Semantics</a></h2>
+<p>Coming soon...</p>
+<h1><a class="header" href="#assert-statement" id="assert-statement">Assert Statement</a></h1>
+<h2><a class="header" href="#syntax-89" id="syntax-89">Syntax</a></h2>
+<pre><code>&lt;assert-statement&gt; ::= &quot;assert&quot; &lt;expression&gt; &quot;;&quot;
+</code></pre>
+<h2><a class="header" href="#semantics-89" id="semantics-89">Semantics</a></h2>
+<p>Coming soon...</p>
+<h1><a class="header" href="#block-statement" id="block-statement">Block Statement</a></h1>
+<h2><a class="header" href="#syntax-90" id="syntax-90">Syntax</a></h2>
+<pre><code>&lt;block-statement&gt; ::= &lt;block&gt;
+</code></pre>
+<h2><a class="header" href="#semantics-90" id="semantics-90">Semantics</a></h2>
+<p>Coming soon...</p>
 <h1><a class="header" href="#conditional-statement" id="conditional-statement">Conditional Statement</a></h1>
+<h2><a class="header" href="#syntax-91" id="syntax-91">Syntax</a></h2>
+<pre><code>&lt;conditional-statement&gt; ::= &lt;conditional&gt;
+</code></pre>
+<h2><a class="header" href="#semantics-91" id="semantics-91">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#when-statement" id="when-statement">When Statement</a></h1>
+<h2><a class="header" href="#syntax-92" id="syntax-92">Syntax</a></h2>
+<pre><code>&lt;when-statement&gt; ::= &lt;when&gt;
+</code></pre>
+<h2><a class="header" href="#semantics-92" id="semantics-92">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#infinite-loop-statement" id="infinite-loop-statement">Infinite Loop Statement</a></h1>
+<h2><a class="header" href="#syntax-93" id="syntax-93">Syntax</a></h2>
+<pre><code>&lt;infinite-loop-statement&gt; ::= &lt;infinite-loop&gt;
+</code></pre>
+<h2><a class="header" href="#semantics-93" id="semantics-93">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#while-loop-statement" id="while-loop-statement">While Loop Statement</a></h1>
+<h2><a class="header" href="#syntax-94" id="syntax-94">Syntax</a></h2>
+<pre><code>&lt;while-loop-statement&gt; ::= &lt;while-loop&gt;
+</code></pre>
+<h2><a class="header" href="#semantics-94" id="semantics-94">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#for-loop-statement" id="for-loop-statement">For Loop Statement</a></h1>
+<h2><a class="header" href="#syntax-95" id="syntax-95">Syntax</a></h2>
+<pre><code>&lt;for-loop-statement&gt; ::= &lt;for-loop&gt;
+</code></pre>
+<h2><a class="header" href="#semantics-95" id="semantics-95">Semantics</a></h2>
 <p>Coming soon...</p>
 <h1><a class="header" href="#special-interfaces" id="special-interfaces">Special Interfaces</a></h1>
 <p>Coming soon...</p>

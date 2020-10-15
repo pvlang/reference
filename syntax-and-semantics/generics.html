@@ -166,6 +166,11 @@
 
 &lt;generic-argument&gt;  ::= &lt;type&gt; | &lt;expression&gt;
 &lt;generic-arguments&gt; ::= &quot;[&quot; &lt;generic-argument&gt; (&quot;,&quot; &lt;generic-argument&gt;)* &quot;,&quot;? &quot;]&quot;
+
+&lt;generic-constraint-atom&gt; ::= (&quot;is&quot; | &quot;has&quot;) &lt;path&gt;
+&lt;generic-constraint&gt;      ::= &lt;generic-constraint-atom&gt; (&quot;and&quot; &lt;generic-constraint-atom&gt;)*
+&lt;generic-constraints&gt;     ::= &quot;where&quot; &lt;path&gt; &lt;generic-constraint&gt;
+                            | &quot;where&quot; &quot;{&quot; (&lt;path&gt; &lt;generic-constraint&gt; &quot;,&quot;)* (&lt;path&gt; &lt;generic-constraint&gt;)? &quot;}&quot;
 </code></pre>
 <h2><a class="header" href="#semantics" id="semantics">Semantics</a></h2>
 <ul>

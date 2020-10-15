@@ -164,7 +164,7 @@
 <pre><code>&lt;struct-expression-atom&gt; ::= &lt;identifier&gt;
                            | &lt;identifier&gt; &quot;:&quot; &lt;expression&gt;
 
-&lt;struct-expression-base&gt; ::= &quot;{&quot; (&lt;struct-expression-atom&gt; &quot;,&quot;)* &quot;...&quot; &lt;expression&gt; &quot;}&quot;
+&lt;struct-expression-base&gt; ::= &quot;{&quot; (&lt;struct-expression-atom&gt; &quot;,&quot;)* &lt;spread-expression&gt; &quot;}&quot;
                            | &quot;{&quot; (&lt;struct-expression-atom&gt; &quot;,&quot;)* &lt;struct-expression-atom&gt;? &quot;}&quot;
 
 &lt;struct-expression&gt; ::= &quot;@&quot; &lt;struct-expression-base&gt;

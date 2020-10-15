@@ -160,6 +160,16 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#struct-patterns" id="struct-patterns">Struct Patterns</a></h1>
+<h2><a class="header" href="#syntax" id="syntax">Syntax</a></h2>
+<pre><code>&lt;struct-pattern-atom&gt; ::= &lt;identifier&gt; (&quot;:&quot; &lt;type&gt;)? (&quot;as&quot; &lt;identifier&gt;)?
+                        | &lt;identifier&gt; (&quot;:&quot; &lt;type&gt;)? (&quot;as&quot; (&lt;identifier&gt; | &quot;_&quot;))? &quot;is&quot; &lt;expression&gt;
+                        | &lt;identifier&gt; (&quot;:&quot; &lt;type&gt;)? (&quot;as&quot; (&lt;identifier&gt; | &quot;_&quot;))? &quot;is&quot; &quot;in&quot; &lt;expression&gt;
+                        | &lt;identifier&gt; (&quot;:&quot; &lt;type&gt;)? (&quot;as&quot; (&lt;identifier&gt; | &quot;_&quot;))? &quot;is&quot; &quot;#&quot; &lt;pattern&gt;
+
+&lt;struct-pattern&gt; ::= &quot;{&quot; (&lt;struct-pattern-atom&gt; &quot;,&quot;)* &lt;struct-pattern-atom&gt;? &quot;}&quot;
+                   | &quot;{&quot; (&lt;struct-pattern-atom&gt; &quot;,&quot;)* &quot;..&quot; (&quot;:&quot; &lt;type&gt;)? (&quot;as&quot; &lt;identifier&gt;)? &quot;,&quot;? &quot;}&quot;
+</code></pre>
+<h2><a class="header" href="#semantics" id="semantics">Semantics</a></h2>
 <p>Coming soon...</p>
 
                     </main>
