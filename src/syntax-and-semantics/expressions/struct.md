@@ -6,7 +6,7 @@
 <struct-expression-atom> ::= <identifier>
                            | <identifier> ":" <expression>
 
-<struct-expression-base> ::= "{" (<struct-expression-atom> ",")* "..." <expression> "}"
+<struct-expression-base> ::= "{" (<struct-expression-atom> ",")* <spread-expression> "}"
                            | "{" (<struct-expression-atom> ",")* <struct-expression-atom>? "}"
 
 <struct-expression> ::= "@" <struct-expression-base>

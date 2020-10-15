@@ -8,6 +8,11 @@
 
 <generic-argument>  ::= <type> | <expression>
 <generic-arguments> ::= "[" <generic-argument> ("," <generic-argument>)* ","? "]"
+
+<generic-constraint-atom> ::= ("is" | "has") <path>
+<generic-constraint>      ::= <generic-constraint-atom> ("and" <generic-constraint-atom>)*
+<generic-constraints>     ::= "where" <path> <generic-constraint>
+                            | "where" "{" (<path> <generic-constraint> ",")* (<path> <generic-constraint>)? "}"
 ```
 
 ## Semantics

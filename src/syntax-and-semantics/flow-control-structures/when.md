@@ -3,11 +3,13 @@
 ## Syntax
 
 ```
-<arm> ::= <expression> "=>" <expression>
-        | "in" <expression> "=>" <expression>
-        | "some" <identifier> "=>" <expression>
-        | "#" <pattern> "=>" <expression>
-        | "_" "=>" <expression>
+<match> ::= <expression>
+          | "in" <expression>
+          | "some" <identifier>
+          | "#" <pattern>
+          | "_"
+
+<arm> ::= (<match> "or")* <match> ("provided" <expression>)? "=>" <expression>
 
 <when> ::= "when" <expression> "is" "{" (<arm> ",")* <arm>? "}"
 ```

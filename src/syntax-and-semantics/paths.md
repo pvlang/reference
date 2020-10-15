@@ -7,6 +7,7 @@
               | "project"
               | "super"
               | "self"
+              | "Self"
 
 <path> ::= (<path-atom> "::")* <path-atom>
 ```

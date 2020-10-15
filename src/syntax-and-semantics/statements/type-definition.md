@@ -5,13 +5,11 @@
 ```
 <tuple-definition>   ::= "(" (<type> ",")* <type>? ")"
 <struct-definition>  ::= "{" (<identifier> ":" <type> ",")* (<identifier> ":" <type>)? "}"
-<variant-definition> ::= "(" "|"? <type> ("|" <type>)+ ")"
+<variant-definition> ::= "(" "|"? (<type> | <type-definition>) ("|" (<type> | <type-definition>))+ ")"
 
-<type-definition> ::= <tuple-definition>
-                    | <struct-definition>
-                    | <variant-definition>
+<type-definition> ::= "trivial"? "type" <identifier> <generic-parameters>? ("=" (<tuple-definition> | <struct-definition> | <variant-definition>))?
 
-<type-definition-statement> ::= "trivial"? "type" <identifier> <generic-parameters>? ("=" <type-definition>)? ";"
+<type-definition-statement> ::= <type-definition> ";"
 ```
 
 ## Semantics
