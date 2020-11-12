@@ -3,15 +3,10 @@
 ## Syntax
 
 ```
-<assumes> ::= "assumes" <TODO>
-
-<requires> ::= "requires" <TODO>
-
-<ensures> ::= "ensures" <TODO>
-
 <specification> ::= <assumes>? <requires>? <ensures>?
 ```
 
 ## Semantics
 
-Coming soon...
+- They are only used by the compiler when the verification is turned on.
+- They do not affect the result of compilation.

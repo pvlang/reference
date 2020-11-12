@@ -111,6 +111,10 @@
   - [Expression Precedence](syntax-and-semantics/expression-precedence.md)
 
   - [Specifications](syntax-and-semantics/specifications.md)
+    - [Propositions](syntax-and-semantics/specifications/propositions.md)
+    - [Assumes](syntax-and-semantics/specifications/assumes.md)
+    - [Requires](syntax-and-semantics/specifications/requires.md)
+    - [Ensures](syntax-and-semantics/specifications/ensures.md)
 
   - [Statements](syntax-and-semantics/statements.md)
     - [Import](syntax-and-semantics/statements/import.md)

@@ -8,4 +8,4 @@
 
 ## Semantics
 
-Coming soon...
+- They tell the compiler to verify that at this point in the program, `<expression>` evaluates to **true**.
